@@ -1,0 +1,64 @@
+- platform: time_date
+  display_options:
+    - 'date_time'
+
+- platform: darksky
+  api_key: !secret darksky_api_key
+  monitored_conditions:
+    - summary
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - temperature
+    - apparent_temperature
+    - wind_speed
+    - wind_bearing
+    - humidity
+    - minutely_summary
+    - hourly_summary
+    - temperature_max
+    - temperature_min
+
+- platform: moon
+
+- platform: openweathermap
+  api_key: !secret openweathermap_api_key
+
+- platform: speedtest
+  minute:
+    - 0
+    - 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+- platform: systemmonitor
+  resources:
+  - type: disk_use_percent
+    arg: /
+  - type: memory_free
+  - type: processor_use
+  - type: ipv4_address
+    arg: eth0
+  - type: network_in
+    arg: eth0
+  - type: network_out
+    arg: eth0
+  - type: last_boot
+
+- platform: template
+  sensors:
+    sunset_time:
+      value_template: '{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%H:%M") }}'
+
+- platform: template
+  sensors:
+    sunrise_time:
+      value_template: '{{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%H:%M") }}'
+
+- platform: template
+  sensors:
+    den_harmony:
+      value_template: '{{ states.remote.den.attributes.current_activity }}'
+      friendly_name: 'Currently'

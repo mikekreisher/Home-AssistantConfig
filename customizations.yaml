@@ -1,0 +1,49 @@
+sensor.sunrise_time:
+  friendly_name: Sunrise
+  icon: mdi:weather-sunset-up
+sensor.sunset_time:
+  friendly_name: Sunset
+  icon: mdi:weather-sunset-down
+
+# Dark Sky
+sensor.dark_sky_summary:
+  friendly_name: Right Now
+sensor.dark_sky_precip:
+  friendly_name: Precipitation
+sensor.dark_sky_precip_intensity:
+  friendly_name: Intensity
+sensor.dark_sky_precip_probability:
+  friendly_name: Probability
+sensor.dark_sky_temperature:
+  friendly_name: Temp
+sensor.dark_sky_apparent_temperature:
+  friendly_name: Feels Like
+sensor.dark_sky_wind_speed:
+  friendly_name: Wind
+sensor.dark_sky_wind_bearing:
+  friendly_name: Bearing
+sensor.dark_sky_humidity:
+  friendly_name: Humidity
+sensor.dark_sky_minutely_summary:
+  friendly_name: Next Hour
+sensor.dark_sky_hourly_summary:
+  friendly_name: Next Day
+sensor.dark_sky_daily_high_temperature:
+  friendly_name: High
+sensor.dark_sky_daily_low_temperature:
+  friendly_name: Low
+
+# Nest
+sensor.kitchen_nest_protect_battery_health:
+  icon: mdi:battery
+sensor.kitchen_nest_protect_co_status:
+  entity_picture: /local/nest-protect.png
+sensor.kitchen_nest_protect_smoke_status:
+  entity_picture: /local/nest-protect.png
+
+#Wemo
+switch.kitchen_cabinet:
+  entity_picture: /local/wemo.png
+
+sensor.den_harmony:
+  icon: mdi:remote

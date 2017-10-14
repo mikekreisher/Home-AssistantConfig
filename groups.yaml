@@ -1,0 +1,121 @@
+######################### VIEWS ########################
+WeatherView:
+  name: Weather
+  view: yes
+  entities:
+    - group.sun
+    - sensor.moon
+    - group.darksky
+    - camera.bwi
+
+ApartmentView:
+  name: Apartment
+  view: yes
+  entities:
+    - media_player.apartment_tv
+
+DenView:
+  name: Den
+  view: yes
+  entities:
+    - group.den_lights
+    - group.den_remote
+    - media_player.kodi
+
+SecurityView:
+  name: Security
+  view: yes
+  entities:
+    - group.kitchen_nest
+    - group.front_door
+
+SystemView:
+  name: System
+  view: yes
+  entities:
+    - group.date_and_time
+    - group.system
+    - group.network
+
+####################### CARDS ###########################
+darksky:
+  name: Weather
+  entities:
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_daily_high_temperature
+    - sensor.dark_sky_daily_low_temperature
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_icon
+    - sensor.dark_sky_minutely_summary
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_precip
+    - sensor.dark_sky_precip_intensity
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_wind_speed
+    - sensor.dark_sky_wind_bearing
+    - sensor.dark_sky_humidity
+
+date_and_time:
+  name: Date & Time
+  entities:
+    - sensor.date__time
+
+den_lights:
+  name: Den Lights
+  entities:
+    - light.hue_white_lamp_1
+    - light.hue_white_lamp_2
+
+den_remote:
+  name: Harmony
+  entities:
+    - remote.harmony_hub
+    - sensor.den_harmony
+
+front_door:
+  name: Front Door
+  entities:
+    - zwave.front_door
+    - lock.front_door_locked
+    - sensor.front_door_access_control
+    - sensor.front_door_alarm_level
+    - sensor.front_door_alarm_type
+    - sensor.front_door_burglar
+    - sensor.front_door_power_management
+    - sensor.front_door_sourcenodeid
+    - sensor.front_door_system
+
+kitchen_nest:
+  name: Kitchen Nest
+  entities:
+    - binary_sensor.kitchen_nest_protect_online
+    - sensor.kitchen_nest_protect_battery_health
+    - sensor.kitchen_nest_protect_co_status
+    - sensor.kitchen_nest_protect_smoke_status
+
+network:
+  name: Network
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+
+sun:
+  name: Sun & Moon
+  entities:
+    - sun.sun
+    - sensor.sunrise_time
+    - sensor.sunset_time
+    - sensor.moon
+
+system:
+  name: System
+  entities:
+    - sensor.ipv4_address_eth0
+    - sensor.cpu_use
+    - sensor.disk_use_
+    - sensor.ram_free
+    - sensor.received_eth0
+    - sensor.sent_eth0
+    - sensor.last_boot

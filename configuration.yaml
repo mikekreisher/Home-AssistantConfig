@@ -10,12 +10,18 @@ homeassistant:
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/New_York
+  customize: !include customizations.yaml
 
 # Show links to resources in log and frontend
 #introduction:
 
+# Enables configuratin UI
+config:
+
 # Enables the frontend
 frontend:
+  themes: !include themes.yaml
+
 
 http:
   # Uncomment this to add a password (recommended!)
@@ -41,52 +47,81 @@ logbook:
 # Track the sun
 sun:
 
+camera:
+  platform: generic
+  still_image_url: http://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=BWI&brand=wui&num=10&delay=25&type=TR0&frame=0&scale=1.000&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0&rand=25073617&lat=0&lon=0&label=you
+  name: BWI
+
 # Weather Prediction
-sensor:
-  platform: yr
+#sensor:
+#  platform: yr
 
 # Text to speech
 tts:
   platform: google
 
+# Speed Test
+sensor: !include sensors.yaml
+
 
 mqtt:
-  broker: 127.0.0.1
-  port: 1883
-  client_id: home-assistant-1
-  username: pi
-  password: raspberry
+  broker: !secret cloud_mqtt_server
+  port: !secret cloud_mqtt_port
+  username: !secret cloud_mqtt_user
+  password: !secret cloud_mqtt_password
 
 media_player:
-  - platform: webostv
-    host: 10.0.0.12
-    mac: E4:3E:D7:54:DB:EC
-    name: Apartment TV
-    customize:
-      sources:
-        - pandora
-        - youtube
-        - netflix
+  - platform: kodi
+    host: 10.0.0.3
+#  - platform: webostv
+#    host: 10.0.0.12
+#    mac: E4:3E:D7:54:DB:EC
+#    name: Apartment TV
+#    customize:
+#      sources:
+#        - pandora
+#        - youtube
+#        - netflix
+
+device_tracker:
+#  - platform: netgear
+#    host: routerlogin.net
+#    #host: 10.0.0.1
+#    #port: 80
+#    #username: !secret netgear_username
+#    password: !secret netgear_password
+#    interval_seconds: 10
+#    consider_home: 180
+#    track_new_devices: yes
+  - platform: owntracks
+    max_gps_accuracy: 200
+#  - platform: nmap_tracker
+#    hosts: 10.0.0.1/24
+#    home_interval: 10
 
 remote:
   - platform: harmony
     name: Den
-    host: 10.0.0.3
+    host: 10.0.0.4
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  sensors:
+    monitored_conditions:
+      - co_status
+      - smoke_status
+      - battery_health
 
 zwave:
   usb_path: /dev/ttyACM0
+  network_key: 0x5E, 0x50, 0x0A, 0x3A, 0x36, 0x67, 0x44, 0xC1, 0xD1, 0x77, 0x56, 0x6A, 0x60, 0x5C, 0xDA, 0x1D
 
+automation: !include automations.yaml
+
+zone: !include zones.yaml
 
 ####################################
 ## GROUPS
 ####################################
-group:
-  Weather:
-    view: yes
-    entities:
-      - sun.sun
-
-  Apartment:
-    view: yes
-    entities:
-      - media_player.apartment_tv
+group: !include groups.yaml

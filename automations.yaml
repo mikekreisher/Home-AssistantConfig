@@ -1,0 +1,45 @@
+- action:
+  - alias: Turn on Den Lights
+    data:
+      entity_id: group.den_lights
+    service: light.turn_on
+  alias: Lights on at Sunset
+  condition: []
+  id: '1504235488793'
+  trigger:
+  - event: sunset
+    offset: -00:45:00
+    platform: sun
+- action:
+  - alias: Turn off Den Lights
+    data:
+      entity_id: group.den_lights
+    service: light.turn_off
+  alias: Lights off at Midnight
+  condition: []
+  id: '1504235747602'
+  trigger:
+  - at: 00:00:01
+    platform: time
+- action:
+  - alias: Set default theme at sunrise
+    data:
+      name: default
+    service: frontend.set_theme
+  alias: Set Default Theme at Sunrise
+  condition: []
+  id: '1504237409538'
+  trigger:
+  - event: sunrise
+    offset: +00:30:00
+    platform: sun
+- action:
+  - data:
+      name: darkblue
+    service: frontend.set_theme
+  alias: Set night theme at sunset
+  condition: []
+  id: '1504237490826'
+  trigger:
+  - event: sunset
+    platform: sun

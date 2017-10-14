@@ -1,0 +1,13 @@
+#zone 2:
+- name: Work
+  latitude: !secret work_latitude
+  longitude: !secret work_longitude
+  radius: 500
+  icon: mdi:domain
+
+#zone 3:
+- name: Gumdo
+  latitude: !secret gumdo_latitude
+  longitude: !secret gumdo_longitude
+  radius: 150
+  icon: mdi:sword
